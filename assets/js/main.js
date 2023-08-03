@@ -150,13 +150,24 @@ function bodyScrollingToggle() {
         .getAttribute("data-screenshots");
       //convert screenshots into array
       screenshots = screenshots.split(",");
+      if (screenshots.length === 1) {
+        preBtn.style.display = "none";
+        nextBtn.style.display = "none";
+      } else {
+        preBtn.style.display = "block";
+        nextBtn.style.display = "block";
+      }
       slideIndex = 0;
       popupToggle();
       popupSlideshow();
+      popupDetails();
     }
   });
   closeBtn.addEventListener("click", () => {
     popupToggle();
+    if (projectDetailsContaine.classList.contains("active")) {
+      popupDetailsToggle();
+    }
   });
 
   function popupToggle() {
@@ -177,6 +188,70 @@ function bodyScrollingToggle() {
     };
     popup.querySelector(".pp-counter").innerHTML =
       slideIndex + 1 + " of " + screenshots.length;
+  }
+
+  //next slide
+  nextBtn.addEventListener("click", () => {
+    if (slideIndex === screenshots.length - 1) {
+      slideIndex = 0;
+    } else {
+      slideIndex++;
+    }
+    popupSlideshow();
+    console.log("slideIndex:" + slideIndex);
+  });
+
+  function popupDetails() {
+    //if portfolio-item-details not exists
+    if (!portfolioItems[itemIndex].querySelector(".portfolio-item-details")) {
+      projectDetailBtn.style.display = "none";
+      return;
+    }
+    projectDetailBtn.style.display = "block";
+    //get the project details
+
+    const details = portfolioItems[itemIndex].querySelector(
+      ".portfolio-item-details"
+    ).innerHTML;
+    popup.querySelector(".pp-project-details").innerHTML = details;
+    const title = portfolioItems[itemIndex].querySelector(
+      ".portfolio-item-title"
+    ).innerHTML;
+    popup.querySelector(".pp-title h2").innerHTML = title;
+    const category = portfolioItems[itemIndex].getAttribute("data-catagory");
+    popup.querySelector(".pp-project-category").innerHTML = category
+      .split("-")
+      .join(" ");
+  }
+
+  // prev slide
+  preBtn.addEventListener("click", () => {
+    if (slideIndex === 0) {
+      slideIndex = screenshots.length - 1;
+    } else {
+      slideIndex--;
+    }
+    popupSlideshow();
+    console.log("slideIndex:" + slideIndex);
+  });
+  projectDetailBtn.addEventListener("click", () => {
+    popupDetailsToggle();
+  });
+
+  function popupDetailsToggle() {
+    if (projectDetailsContaine.classList.contains("active")) {
+      projectDetailBtn.querySelector("i").classList.remove("fa-minus");
+      projectDetailBtn.querySelector("i").classList.add("fa-plus");
+      projectDetailsContaine.classList.remove("active");
+      projectDetailsContaine.style.maxHeight = 0 + "px";
+    } else {
+      projectDetailBtn.querySelector("i").classList.remove("fa-plus");
+      projectDetailBtn.querySelector("i").classList.add("fa-minus");
+      projectDetailsContaine.classList.add("active");
+      projectDetailsContaine.style.maxHeight =
+        projectDetailsContaine.scrollHeight + "px";
+      popup.scrollTo(0, portfolioItemscontainer.offsetTop);
+    }
   }
 })();
 
