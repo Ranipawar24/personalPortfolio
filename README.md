@@ -1,4 +1,3 @@
-# personalPortfolio
 
 # Features:
 
@@ -22,6 +21,10 @@ HTML, CSS, JavaScript, Font Awesome
 ![porfolioimg2](https://github.com/Ranipawar24/personalPortfolio/assets/117185832/92952a87-5d06-49c0-aa6d-9cfdc20a687c)
 
 ![porfolioimg3](https://github.com/Ranipawar24/personalPortfolio/assets/117185832/b3808282-6b9c-4ae7-b7c4-1037fd448568)
+
+
+
+![porfolioimg6](https://github.com/Ranipawar24/personalPortfolio/assets/117185832/bd9829cd-97c7-4c44-8ab4-25254964abfe)
 
 
 ![porfolioimg5](https://github.com/Ranipawar24/personalPortfolio/assets/117185832/ffcb7487-7cb3-4c3e-b9bc-51b71d4b0d96)
